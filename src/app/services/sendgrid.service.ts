@@ -10,7 +10,6 @@ export class SendgridService {
   }
 
   sendOrcamento = (dto: SendgridDto) => {
-    console.log(dto.name + ' '+ dto.toEmail + ' '+ dto.text)
     return axios.post('http://localhost:3030/sendgrid', {
       dto
     })
