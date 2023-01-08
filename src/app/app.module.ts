@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/landing/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SendgridService} from './services/sendgrid.service';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,12 @@ import { FooterComponent } from './components/footer/footer.component';
     NavbarComponent,
     FooterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule
+    ],
+  providers: [SendgridService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
