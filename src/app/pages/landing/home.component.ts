@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   public sendgrid?: SendgridDto;
   form: FormGroup;
   submitted = false;
+  alert = true
 
   constructor(public send: SendgridService, private fb: FormBuilder) {
   }
@@ -18,32 +19,36 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       text: ['', Validators.required],
     });
   }
 
+
+  closeAlert() {
+    this.alert = !this.alert
+  }
+
   // buscando os campos de forma facil
-  get f() { return this.form.controls; }
+  get f() {
+    return this.form.controls;
+  }
 
   sendMail() {
     this.submitted = true;
 
     // Verifica erro no form
-    if ( this.f.email.errors.email) {
+    if (this.f.email.errors.email) {
       return;
     }
-
     // @ts-ignore
     this.sendgrid = new SendgridDto();
     this.sendgrid.name = this.form.get('name').value;
     this.sendgrid.toEmail = this.form.get('email').value;
     this.sendgrid.text = this.form.get('text').value;
 
-    debugger;
-
     this.send.sendOrcamento(this.sendgrid).then(r => {
-      console.log(r)
+      this.alert = true;
     });
   }
 
