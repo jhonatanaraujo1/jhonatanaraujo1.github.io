@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     this.submitted = true;
 
     // Verifica erro no form
-    if (this.f.email.errors.email) {
+    if (this.f.email.errors?.email) {
       return;
     }
     // @ts-ignore
