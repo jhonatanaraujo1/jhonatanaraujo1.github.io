@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   public sendgrid?: SendgridDto;
   form: FormGroup;
   submitted = false;
-  alert = true
+  alert = false
 
   constructor(public send: SendgridService, private fb: FormBuilder) {
   }
